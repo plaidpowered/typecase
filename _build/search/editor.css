@@ -1,0 +1,40 @@
+.wp-block-typecase-search {
+  min-height: 100px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  margin: 0;
+  background: #efefef; }
+  .wp-block-typecase-search.has-center-content {
+    align-items: center;
+    text-align: center; }
+  .wp-block-typecase-search.has-right-content {
+    align-items: flex-end;
+    text-align: right; }
+  .wp-block-typecase-search img.background {
+    width: 100%;
+    object-fit: cover; }
+  .wp-block-typecase-search figcaption {
+    padding: 1em; }
+    .wp-block-typecase-search figcaption p {
+      margin-bottom: 10px;
+      color: inherit; }
+  .wp-block-typecase-search h2 {
+    max-width: 100%;
+    line-height: 1.1em;
+    color: inherit; }
+  .wp-block-typecase-search .no-image-selected {
+    border: 1px solid #333; }
+  .wp-block-typecase-search:not(.no-image-selected) {
+    background: #333; }
+    .wp-block-typecase-search:not(.no-image-selected) figcaption {
+      color: white; }
+    .wp-block-typecase-search:not(.no-image-selected) img.background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.15; }

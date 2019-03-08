@@ -1,0 +1,26 @@
+
+.wp-block-typecase-accordion-tabs {
+           
+    min-height: 50px;
+    
+    padding: 8px;
+
+    border: 1px solid #efefef;
+
+    &::before {
+        position: absolute;
+        top: 0;
+        right: calc(100% + 8px);
+        text-align: right;
+        content: 'ACCORDION';
+        font-size: 8px;
+    }
+
+}
+
+
+.wp-block[data-align="wide"][data-type="typecase/accordion-tabs"] .wp-block {
+
+    max-width: calc(100% - 20px);
+
+}

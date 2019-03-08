@@ -1,0 +1,41 @@
+.wp-block-typecase-email-signup {
+  min-height: 100px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  margin: 0;
+  background: #efefef; }
+  .wp-block-typecase-email-signup.has-center-content {
+    align-items: center;
+    text-align: center; }
+  .wp-block-typecase-email-signup.has-right-content {
+    align-items: flex-end;
+    text-align: right; }
+  .wp-block-typecase-email-signup img.background {
+    width: 100%;
+    max-height: 300px;
+    object-fit: cover; }
+  .wp-block-typecase-email-signup figcaption {
+    padding: 1em; }
+    .wp-block-typecase-email-signup figcaption p {
+      margin-bottom: 10px;
+      color: inherit; }
+  .wp-block-typecase-email-signup h2 {
+    max-width: 100%;
+    line-height: 1.1em;
+    color: inherit; }
+  .wp-block-typecase-email-signup .no-image-selected {
+    border: 1px solid #333; }
+  .wp-block-typecase-email-signup:not(.no-image-selected) {
+    background: #333; }
+    .wp-block-typecase-email-signup:not(.no-image-selected) figcaption {
+      color: white; }
+    .wp-block-typecase-email-signup:not(.no-image-selected) img.background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.15; }
