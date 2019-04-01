@@ -222,7 +222,7 @@ registerBlockType( 'typecase/slider-slide', {
     } ),
     
     save( { attributes, className } ) {
-		const { image, title, content, contentAlign, buttonText, buttonUrl, textReverse } = attributes;
+		const { image, title, content, contentAlign, buttonText, buttonUrl, textReverse, id } = attributes;
 		//const style = backgroundImageStyles( image );
 		let classes = className,
 			captionClasses;

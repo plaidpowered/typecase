@@ -94,7 +94,7 @@ function typecaseSliderSwiped(e) {
 
 function typecaseSliderInstall(selector, slideSelector) {
 
-    console.log('typecaseSliderInstall(' + selector + ', ' + slideSelector + ')');
+    //console.log('typecaseSliderInstall(' + selector + ', ' + slideSelector + ')');
 
     if (selector === undefined) {
         selector = ".wp-block-typecase-slider"
