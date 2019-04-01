@@ -186,6 +186,10 @@ function typecaseAccordionTabToggle(e) {
         document.dispatchEvent(new CustomEvent('typecase|accordion-tabs:opened', {detail: 
             { accordion: thisAccordion, button: thisButton, content: thisContent, tabs: thisTabgroup }
         }));
+
+        thisContent.dispatchEvent(new CustomEvent('typecase|accordion-tab:opened', {detail: 
+            { accordion: thisAccordion, button: thisButton, tabs: thisTabgroup }
+        }));
     }
 
     document.dispatchEvent(new CustomEvent('typecase|accordion-tabs:changed', {detail: {
@@ -508,7 +512,7 @@ function typecaseSliderSwiped(e) {
 
 function typecaseSliderInstall(selector, slideSelector) {
 
-    console.log('typecaseSliderInstall(' + selector + ', ' + slideSelector + ')');
+    //console.log('typecaseSliderInstall(' + selector + ', ' + slideSelector + ')');
 
     if (selector === undefined) {
         selector = ".wp-block-typecase-slider"
