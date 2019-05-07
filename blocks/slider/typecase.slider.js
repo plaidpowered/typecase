@@ -94,15 +94,19 @@ function typecaseSliderSwiped(e) {
 
 function typecaseSliderInstall(selector, slideSelector) {
 
-    //console.log('typecaseSliderInstall(' + selector + ', ' + slideSelector + ')');
+    console.log('typecaseSliderInstall(' + selector + ', ' + slideSelector + ')');
 
     if (selector === undefined) {
         selector = ".wp-block-typecase-slider"
     }
 
+    console.log( selector );
+
     if (slideSelector === undefined) {
         slideSelector = selector + "-slide";
     }
+
+    console.log( slideSelector );
 
     var sliders;
 
@@ -120,6 +124,8 @@ function typecaseSliderInstall(selector, slideSelector) {
         return false;
     }
 
+    console.log( sliders );
+
     for(var i = 0; i < sliders.length; i += 1) {
 
         var controls = document.createElement('nav'),
@@ -127,7 +133,9 @@ function typecaseSliderInstall(selector, slideSelector) {
             nextSlideButton = document.createElement('button'),
             slides = sliders[i].querySelectorAll(slideSelector);
 
-        var first = sliders[i].querySelector(slideSelector + ':first-child');
+        console.log( slides );
+
+        var first = sliders[i].querySelector(slideSelector + ':first-of-type');
         if (first) {
             first.classList.add('__active');
         } else {

@@ -10,18 +10,18 @@ const {
 	Component
 } = wp.element;
 
-const { 
+const {
 	registerBlockType,
-	BlockControls	
+	BlockControls
 } = wp.blocks; // Import registerBlockType() from wp.blocks
 
 const {
 	InspectorControls
 } = wp.editor;
 
-const { 
+const {
 	PanelBody,
-	SelectControl		
+	SelectControl
 } = wp.components;
 
 
@@ -29,84 +29,92 @@ const { withSelect } = wp.data;
 
 class typecasePostBlock extends Component {
 
-	static getInitialState() {
-		return {
-			posts: [],
-            postId: 0,
-            postSelection: null
-		};
-	}
-
 	constructor() {
 
 		super( ...arguments );
 
-		this.state = this.constructor.getInitialState();
-        this.getPosts = this.getPosts.bind(this);
-        this.getSelection = this.getSelection.bind(this);
-		this.changeSelection = this.changeSelection.bind(this);
-		
+		this.state = {
+			posts: [],
+            postId: 0,
+            postSelection: null
+		};
+
 	}
 
 	componentDidMount() {
 		this.setState( { postId: this.props.attributes.postId } );
-        this.getPosts();
-        this.getSelection(this.props.attributes.postId);
+        this.getRecentPosts();
+        this.getSelectedPost( this.props.attributes.postId );
 	}
 
-	getPosts() {
-		return (new wp.api.collections.Posts()).fetch({ data: { per_page: 100 } }).then( (posts) => {
-			this.setState({ posts });			
+
+	componentDidUpdate( prevProps ) {
+		this.handleChange( prevProps );
+	}
+
+	getRecentPosts() {
+		return ( new wp.api.collections.Posts() ).fetch( { data: { per_page: 100 } } ).then( ( posts ) => {
+			this.setState( { posts } );
 		} );
-    }	
-    
-    getSelection(postId) {
-        if (typeof postId === 'number' && postId > 0) {
-            (new wp.api.models.Post({ id: this.props.attributes.postId })).fetch().then( (post) => {
-    		    this.setState({ postSelection: post });			
-            });
+    }
+
+    getSelectedPost( postId ) {
+
+        if ( typeof postId === 'number' && postId > 0 ) {
+            (new wp.api.models.Post( { id: this.props.attributes.postId } ) ).fetch().then( (post) => {
+    		    this.setState( { postSelection: post } );
+            } );
         }
         else {
             this.setState( { postSelection: null } );
-        }
-	}	
+		}
+		
+	}
 
-	changeSelection(value) {
-		this.setState({ postId: parseInt(value) });
-        this.props.setAttributes({ 'postId': parseInt(value) });
+	handleChange( prevProps ) {
 
-		this.getSelection(parseInt(value));
-		//this.render();
 	}
 
 	render() {
+		const {
+			attributes,
+			setAttributes,
+			className
+		} = this.props;
+
+		const {
+			posts,
+			postSelection
+		} = this.state;
 
 		let output = 'loading ...';
 
-		var postSelections = [{value: 0, label: '(Select a post)'}];
+		var postSelections = [ { value: 0, label: '(Select a post)' } ];
 
-		if (this.state.posts.length > 0) {
+		if ( posts && posts.length > 0 ) {
 
-			this.state.posts.forEach((post) => {
-				postSelections.push({value: post.id, label: post.title.rendered});
-			});			
+			posts.forEach( (post) => {
+				postSelections.push( { value: post.id, label: post.title.rendered } );
+			});
 
-        }		
-        
-        if (this.state.postSelection) {
+        }
+
+        if ( postSelection ) {
 
 			output = (
 				<Fragment>
-					<h4>{this.state.postSelection.title.rendered}</h4>
-					<div class="excerpt" dangerouslySetInnerHTML={{ __html: this.state.postSelection.excerpt.rendered }}></div>
+					<h4>{ postSelection.title.rendered }</h4>
+					<div class="excerpt" dangerouslySetInnerHTML={ { __html: postSelection.excerpt.rendered } }></div>
 				</Fragment>
 			);
 
-        } else if (this.state.posts.length > 0) {
+        } else if ( posts.length > 0 ) {
 
 			output = (<p><em>Please select a post to feature</em></p>);
-			
-        }
+
+		}
+		
+		const setSelection = ( value ) => setAttributes( { postId: parseInt( value, 10 ) } );
 
 		return (
 			<Fragment>
@@ -114,13 +122,13 @@ class typecasePostBlock extends Component {
 					<PanelBody title={ __( 'Post Settings' ) }>
 						<SelectControl
 							label={ __( 'Select a post' ) }
-							value={ this.props.attributes.postId }
+							value={ attributes.postId }
 							options={ postSelections }
-							onChange={ this.changeSelection }
+							onChange={ setSelection }
 						/>
 					</PanelBody>
 				</InspectorControls>
-				<div data-post-id={ this.props.attributes.postId || 0 } className={ this.props.className || '' }>
+				<div data-post-id={ attributes.postId || 0 } className={ className || '' }>
 					{ output }
 				</div>
 			</Fragment>
@@ -142,7 +150,7 @@ registerBlockType('typecase/single-post', {
             type: 'number'
 		}
 	},
-	
+
 	supports: {
 		html: false,
 		anchor: true
