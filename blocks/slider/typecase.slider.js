@@ -6,25 +6,34 @@ function typecaseSliderSelectSlide(e) {
 
 }
 
-function typecaseSliderSelectSlideFromThumb(thumb) {
-
+function typecaseSliderSelectSlideFromThumb( thumb ) {
+ 
     if (! thumb.mySlider || ! thumb.mySlide) {
         return;
     }
+    
+    typecaseSliderSwitchSlide( thumb.mySlider, thumb.mySlide, thumb );
 
-    var active = thumb.mySlider.querySelector('.__active'),
-    selected = thumb.mySlider.querySelector('.__selected');
+}
 
-    if (!! active) {
+function typecaseSliderSwitchSlide( slider, slide, thumb ) {
+
+    var active = slider.querySelector('.__active'),
+        selected = slider.querySelector('.__selected');
+
+    if ( !! active ) {
         active.classList.remove("__active");
     }
 
-    if (!! selected) {
+    if ( !! selected ) {
         selected.classList.remove("__selected");
     }
 
-    thumb.mySlide.classList.add("__active");
-    thumb.classList.add("__selected");
+    slide.classList.add("__active");
+
+    if ( !! thumb ) {
+        thumb.classList.add("__selected");
+    }
 
 }
 
