@@ -35,6 +35,10 @@ function typecaseSliderSwitchSlide( slider, slide, thumb ) {
         thumb.classList.add("__selected");
     }
 
+    slider.dispatchEvent( new CustomEvent('typecase|slide-changed', { detail: 
+        { slide: slide, direction: 'arbitrary' }
+    } ) );
+
 }
 
 function typecaseSliderChangeSlide(thisSlider, direction) {
@@ -196,12 +200,14 @@ function typecaseSliderInstall(selector, slideSelector) {
         
     }
 
+    document.dispatchEvent( new CustomEvent( 'typecase|installed', { detail: 
+        { sliders: sliders }
+    } ) );
+
 }
 
 (function () {
 
     typecaseSliderInstall();
-
-    document.dispatchEvent(new Event('typecase|installed'));
 
 }())
