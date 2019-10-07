@@ -8,19 +8,20 @@ const {
 	TextControl,
 	ToggleControl, 
 	Toolbar, 
-	withNotices 
+	withNotices ,
 } = wp.components;
 const { Fragment } = wp.element;
 const { createBlock, registerBlockType } = wp.blocks;
 const { 
-	URLInput,
     BlockControls,
 	InspectorControls,
+	AlignmentToolbar,
+	RichText,
+	
+	URLInput,
 	MediaPlaceholder,
 	MediaUpload,
-	AlignmentToolbar,
-    RichText
-} = wp.editor;
+} = wp.blockEditor;
 
 function backgroundImageStyles( url ) {
 	return url ?

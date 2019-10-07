@@ -3,15 +3,16 @@
 const { Dashicon, IconButton, PanelBody, RangeControl, ToggleControl, Toolbar, withNotices } = wp.components;
 const { Fragment } = wp.element;
 const { createBlock, registerBlockType } = wp.blocks;
-const { 
-	URLInput,
-    BlockControls,
+const {
+	AlignmentToolbar,
+	BlockControls,
 	InspectorControls,
+	RichText,
+	
+	URLInput,
 	MediaPlaceholder,
 	MediaUpload,
-	AlignmentToolbar,
-    RichText
-} = wp.editor;
+} = wp.blockEditor;
 
 function backgroundImageStyles( url ) {
 	return url ?
@@ -185,7 +186,7 @@ registerBlockType( 'typecase/cta', {
 								placeholder={ 'Add text…' }
 								value={ buttonText }
 								onChange={ ( value ) => setAttributes( { buttonText: value } ) }
-								formattingControls={ [ 'bold', 'italic', 'strikethrough' ] }
+								allowedFormats={ [ 'bold', 'italic', 'strikethrough' ] }
 								className={ 'wp-block-cta__link' }
 								keepPlaceholderOnFocus
 							/>

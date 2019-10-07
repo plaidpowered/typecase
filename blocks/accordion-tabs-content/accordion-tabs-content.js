@@ -5,8 +5,8 @@ const { createBlock, registerBlockType } = wp.blocks;
 const { 
 	InspectorControls, 
 	InnerBlocks, 
-	RichText
-} = wp.editor;
+	RichText 
+} = wp.blockEditor;
 
 registerBlockType( 'typecase/accordion-tabs-content', {
 

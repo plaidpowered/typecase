@@ -4,7 +4,7 @@
 const { createBlock, registerBlockType } = wp.blocks;
 const { PanelBody, ToggleControl, TextControl } = wp.components;
 const { Fragment } = wp.element;
-const { InspectorControls, InnerBlocks } = wp.editor;
+const { InspectorControls, InnerBlocks } = wp.blockEditor;
 
 registerBlockType( 'typecase/accordion-tabs', {
 	title: 'Accordion/Tabs' ,

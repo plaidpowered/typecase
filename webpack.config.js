@@ -19,8 +19,6 @@ module.exports = {
 		'_build/cta/cta': resolvePlugin( 'blocks/cta/cta.js' ),
 		'_build/container/container': resolvePlugin( 'blocks/container/container.js' ),
 		'_build/email-signup/email-signup': resolvePlugin( 'blocks/email-signup/email-signup.js' ),
-		'_build/page-index/page-index': resolvePlugin( 'blocks/page-index/page-index.js' ),
-		'_build/single-post/single-post': resolvePlugin( 'blocks/single-post/single-post.js' ),
 		'_build/search/search': resolvePlugin( 'blocks/search/search.js' ),
 		'_build/slider/slider': resolvePlugin( 'blocks/slider/slider.js' ),
 		'_build/slider-slide/slider-slide': resolvePlugin( 'blocks/slider-slide/slider-slide.js' ),

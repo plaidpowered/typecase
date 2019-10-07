@@ -3,15 +3,15 @@
 const { Dashicon, IconButton, PanelBody, RangeControl, ToggleControl, Toolbar, withNotices } = wp.components;
 const { Fragment } = wp.element;
 const { createBlock, registerBlockType } = wp.blocks;
-const { 
-	URLInput,
-    BlockControls,
+const {
+	AlignmentToolbar,
+	BlockControls,
 	InspectorControls,
+	RichText,
 	MediaPlaceholder,
 	MediaUpload,
-	AlignmentToolbar,
-    RichText
-} = wp.editor;
+	URLInput
+} = wp.blockEditor;
 
 function backgroundImageStyles( url ) {
 	return url ?
@@ -56,7 +56,7 @@ registerBlockType( 'typecase/slider-slide', {
 		},
 		buttonText: {
 			type: 'string'
-		}, 
+		},
 		buttonUrl: {
 			type: 'string'
 		},
@@ -150,9 +150,9 @@ registerBlockType( 'typecase/slider-slide', {
 					</InspectorControls>
 				</Fragment>
 				<figure className={ classes }>
-				
+
 					<img className="background" src={ image } />
-					
+
 					<figcaption>
 						<RichText
 							tagName="h2"
@@ -177,7 +177,7 @@ registerBlockType( 'typecase/slider-slide', {
 								placeholder={ 'Add text…' }
 								value={ buttonText }
 								onChange={ ( value ) => setAttributes( { buttonText: value } ) }
-								formattingControls={ [ 'bold', 'italic', 'strikethrough' ] }
+								allowedFormats={ [ 'bold', 'italic', 'strikethrough' ] }
 								className={ 'wp-block-slider-slide__link' }
 								keepPlaceholderOnFocus
 							/>
@@ -197,17 +197,17 @@ registerBlockType( 'typecase/slider-slide', {
 			</Fragment>
 		);
     } ),
-    
+
     save( { attributes, className } ) {
 		const { image, title, content, contentAlign, buttonText, buttonUrl, textReverse, id } = attributes;
 		//const style = backgroundImageStyles( image );
 		let classes = className,
 			captionClasses;
-        
+
         if (contentAlign !== 'left') {
             classes = `${classes} has-${contentAlign}-content`;
 		}
-		
+
 		captionClasses = (!! textReverse) ? "text-color-reverse" : "";
 
 		if (!! textReverse) {
@@ -236,5 +236,5 @@ registerBlockType( 'typecase/slider-slide', {
 			</figure>
 		);
 	}
-    
+
 });
